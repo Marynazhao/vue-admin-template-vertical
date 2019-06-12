@@ -71,7 +71,7 @@ export default [
       {
         path: 'demo2-1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        meta: { title: 'demo2-1' },
+        meta: { title: 'demo2-1' }
       }
     ]
   },
@@ -81,7 +81,25 @@ export default [
     component: () => import('@/views/layout'),
     meta: {
       title: 'demo3'
-    }
+    },
+    children: [
+      {
+        path: 'demo3-1',
+        name: 'demo3-1',
+        component: () => import('@/views/demo3/demo3-1'),
+        meta: {
+          title: 'demo3-1'
+        }
+      },
+      {
+        path: 'demo3-2',
+        name: 'demo3-2',
+        component: () => import('@/views/demo3/demo3-2'),
+        meta: {
+          title: 'demo3-2'
+        }
+      }
+    ]
   },
 
   {
@@ -90,5 +108,5 @@ export default [
     meta: {
       title: 'demo4'
     }
-  },
+  }
 ]

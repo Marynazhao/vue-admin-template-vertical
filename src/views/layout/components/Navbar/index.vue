@@ -40,13 +40,14 @@ export default {
   },
   computed: {
     noHiddenRoutes(){  // 非隐藏路由表
+      console.log(this.$router.options.routes)
 
       // 1. 非 hidden 项
       let alls = this.$router.options.routes.filter( v => !v.hidden )
 
       // 2. 子菜单只有一个合并 path
       alls = alls.reduce( ( init , v ) => {
-        
+
         let childs = v.children;
         if ( childs && childs.length === 1 ){
           let o = {
@@ -58,14 +59,14 @@ export default {
         else{
           init.push( v )
         }
-        
+
         return init;
 
       } , [] )
 
       // 3. 横向菜单个数显示限制
       if ( alls.length > this.menuLimit ){
-      
+
         let leftRoutes = alls.slice( 0 , this.menuLimit ),
             rightRoutes = alls.slice( this.menuLimit );
 
@@ -80,7 +81,7 @@ export default {
         leftRoutes.push( more )
 
         return leftRoutes
-        
+
       }
 
       return alls
@@ -95,12 +96,12 @@ export default {
   methods: {
     handleSelect(key, keyPath) {  // 菜单选择
       let fullPath = keyPath.join('/')
-      
+
       this.$router.push( {
         path: fullPath
       })
     },
-    getFirstPath( arr ){ 
+    getFirstPath( arr ){
       let index = arr.findIndex( v => !v.hidden );
 
       if ( arr[index].children ){
@@ -160,7 +161,7 @@ export default {
 
     }
 
-  
+
   }
 }
 
